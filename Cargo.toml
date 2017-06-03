@@ -1,0 +1,16 @@
+[package]
+name = "sadfeelings"
+version = "0.1.0"
+authors = ["StefanYohansson <sy.fen0@gmail.com>"]
+
+[dependencies]
+rocket = "0.2.8"
+rocket_codegen = "0.2.8"
+serde = "1.0.8"
+serde_derive = "1.0.8"
+serde_json = "1.0.2"
+
+[dependencies.rocket_contrib]
+version = "0.2.8"
+default-features = false
+features = ["handlebars_templates"]

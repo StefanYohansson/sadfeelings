@@ -1,0 +1,45 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Exo', sans-serif;
+    font-size: 14px;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-color: #000;
+    background-image: url("/assets/images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #FEDED1;
+    text-align: center;
+}
+
+h1 {
+    font-size: 42px;
+    text-shadow: 1px 3px 5px #585660;
+}
+
+ a {
+     color: #B1D0FF;
+     text-shadow: 1px 3px 5px #585660;
+ }
+
+.content {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+
+    background-color: #CBCBCB66;
+    padding: 5px 0 30px;
+    box-shadow: 1px 1px 5px #000;
+}
+
+.social-icons {
+    font-size: 3rem;
+}
+
+.social-icons i {
+    padding: 20px;
+}
