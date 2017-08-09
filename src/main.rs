@@ -24,6 +24,7 @@ fn not_found(req: &Request) -> Template {
 fn main() {
     rocket::ignite()
         .mount("/", routes![index])
+        .attach(Template::fairing())
         .catch(errors![not_found])
         .launch();
 }
