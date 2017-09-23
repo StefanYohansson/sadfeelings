@@ -1,32 +1,32 @@
 #![feature(plugin)]
 #![plugin(rocket_codegen)]
 
+#[macro_use]
+extern crate serde_derive;
+extern crate toml;
 extern crate rocket_contrib;
 extern crate rocket;
 extern crate github_rs;
 extern crate rss;
 
-use github_rs::client::Github;
-use github_rs::Json;
-
+use std::fs::File;
+use std::io::prelude::*;
+use std::io::BufReader;
 use std::collections::HashMap;
-use rocket_contrib::Template;
-use rocket::Request;
-
 use std::path::{Path, PathBuf};
 
-use rocket::response::NamedFile;
-
+use github_rs::Json;
+use github_rs::client::Github;
 use rss::{Channel, Item};
 
-fn mock_context<'a>() -> HashMap<&'a str, String> {
-    let mut context: HashMap<&str, String> = HashMap::new();
-    context.insert("email", "snotr@sadfeelings.me".to_string());
-    context.insert("url", "https://github.com/StefanYohansson".to_string());
-    context.insert("avatar_url", "".to_string());
-    context.insert("followers", "41".to_string());
-    context.insert("followers_url", "https://github.com/StefanYohansson/followers".to_string());
-    context
+use rocket::Request;
+use rocket_contrib::Template;
+use rocket::response::NamedFile;
+
+
+#[derive(Deserialize)]
+struct Config {
+    api: String,
 }
 
 fn extract_json(json: &Json, key: &str) -> String {
@@ -36,9 +36,14 @@ fn extract_json(json: &Json, key: &str) -> String {
 #[get("/")]
 fn index() -> Template {
     let mut context: HashMap<&str, String> = HashMap::new();
-    // @TODO: move token to config
-    // it's a read only token, so it won't be a problem
-    let client = Github::new("2538a3824751f390882c5c1edd06fa7f30953c9f");
+
+    let mut file = File::open("config.toml").unwrap();
+    let mut buf_reader = BufReader::new(file);
+    let mut contents = String::new();
+    buf_reader.read_to_string(&mut contents);
+    let config: Config = toml::from_str(&contents).unwrap();
+
+    let client = Github::new(config.api);
     let me = client.unwrap().get()
                    .user()
                    .execute();
