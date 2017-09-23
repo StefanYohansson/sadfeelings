@@ -13,13 +13,31 @@
       <div class="logo"></div>
     </header>
     <section class="content">
+      <picture class="avatar">
+        <img class="shadow" width="125" src="{{avatar_url}}" alt="github avatar" />
+      </picture>
       <h1>Hi, Traveller</h1>
-
-      <p>I am Stefan Yohansson a.k.a snotr, developer, husband, father and open source advocate.</p>
-      <p>Firefox developer tools contributor</p>
+      <p>I am Stefan Yohansson a.k.a snotr, developer, husband, father and open source passionate.</p>
+      <div class="github">
+        <i class="fa fa-github github-logo"></i>
+        <div class="github-content">
+          <a href="{{url}}" target="_blank"><h3>@StefanYohansson</h3></a>
+          {{email}}
+        </div>
+      </div>
+      <div class="rss">
+        <i class="fa fa-rss rss-logo"></i>
+        <div class="github-content">
+          <a href="http://snotr.sadfeelings.me{{latest_link}}" target="_blank"><h3>{{latest_title}}</h3></a>
+          &nbsp;
+        </div>
+      </div>
     </section>
     <aside>
     </aside>
+    <footer>
+      Made with sz by me 
+    </footer>
     <script type="text/javascript" src="/assets/js/main.js"></script>
   </body>
 </html>
