@@ -59,6 +59,7 @@ header {
   font-family: 'Exo', sans-serif;
   text-align: center;
   color: #CCB6AB;
+  min-height: calc(100% - 320px);
 }
 
 .content h1 {
